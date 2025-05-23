@@ -1,0 +1,55 @@
+/* Override the default blue outline/flashing on Swiper buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important; /* Hide default navigation arrows */
+}
+
+/* Custom navigation buttons will be shown instead */
+.custom-swiper-button-prev,
+.custom-swiper-button-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none !important;
+}
+
+/* Override the blue focus state that flashes on button click */
+.swiper-container-3d .swiper-slide-shadow-left,
+.swiper-container-3d .swiper-slide-shadow-right {
+  background-image: none !important;
+}
+
+/* Override default Swiper pagination bullets */
+.swiper-pagination-bullet {
+    width: 5px;         /* smaller width */
+    height: 5px;        /* smaller height */
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  /* Active bullet */
+  .swiper-pagination-bullet-active,
+  .custom-bullet-active {
+    opacity: 1;
+    background: #000000 !important;
+  }
+  
+
+/* Remove any default focus outlines from Swiper elements */
+.swiper-button:focus,
+.swiper-pagination-bullet:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Style for the room swiper to prevent any blue flashes */
+.room-swiper:focus,
+.room-swiper:focus-within,
+.room-swiper:active {
+  outline: none !important;
+}
+
+/* Remove blue highlight on touch devices */
+.room-swiper {
+  -webkit-tap-highlight-color: transparent;
+}
