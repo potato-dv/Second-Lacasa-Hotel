@@ -18,7 +18,8 @@
 
 - User registration and login  
 - Room selection and booking  
-- Multi-step booking process (Guest Info, Stay Details, Payment)  
+- Multi-step booking process (Guest Info, Stay Details, Payment)
+- User dashboard for Viewing their Bookings/Information also can update their information
 - Admin dashboard for managing bookings  
 - Responsive design for all devices  
 - Component-based structure for scalability  
