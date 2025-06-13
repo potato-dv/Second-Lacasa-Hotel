@@ -1,18 +1,15 @@
 // resources/js/components2/navbar.tsx
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { UserAvatar } from '@/components/ui/user-avatar';
+import { UserMenuContent } from '@/components/user-menu-content';
+import { User } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 import 'remixicon/fonts/remixicon.css';
-import { UserMenuContent } from '@/components/user-menu-content';
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuTrigger 
-} from '@/components/ui/dropdown-menu';
-import { User } from '@/types';
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
-    
+
     // Get auth user from Inertia page props
     const { auth } = usePage().props as any;
     const user = auth?.user as User | undefined;
@@ -20,16 +17,12 @@ export default function Navbar() {
 
     return (
         <nav className="absolute top-4 left-0 z-50 w-full bg-transparent">
-            <div className="mx-auto max-w-8xl px-6 md:px-16">
+            <div className="max-w-8xl mx-auto px-6 md:px-16">
                 <div className="flex items-center justify-between py-3">
                     {/* Logo - Adjusted to fit without space */}
                     <Link href="/" className="flex items-center">
                         <div className="h-15 w-auto">
-                            <img 
-                                src="/hotel-logo.svg" 
-                                alt="LaCasa Logo" 
-                                className="h-full w-auto object-contain object-left" 
-                            />
+                            <img src="/hotel-logo.svg" alt="LaCasa Logo" className="h-full w-auto object-contain object-left" />
                         </div>
                     </Link>
 
@@ -51,11 +44,8 @@ export default function Navbar() {
                         {isAuthenticated && user ? (
                             <DropdownMenu>
                                 <DropdownMenuTrigger className="focus:outline-none">
-                                    <div className="flex items-center cursor-pointer rounded-lg border border-white/20 bg-white/50 px-3 py-2 backdrop-blur-sm transition duration-300 hover:border-white/50">
-                                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white mr-2">
-                                            <i className="ri-user-line text-sm text-black"></i>
-                                        </div>
-                                        <span className="font-medium text-white">{user.name}</span>
+                                    <div className="flex cursor-pointer items-center">
+                                        <UserAvatar user={user} size="md" />
                                         <i className="ri-arrow-down-s-line ml-2 text-white"></i>
                                     </div>
                                 </DropdownMenuTrigger>
@@ -65,7 +55,10 @@ export default function Navbar() {
                             </DropdownMenu>
                         ) : (
                             <>
-                                <Link href={route('login')} className="font-medium text-white transition duration-300 ease-in-out hover:text-[#DAA520]">
+                                <Link
+                                    href={route('login')}
+                                    className="font-medium text-white transition duration-300 ease-in-out hover:text-[#DAA520]"
+                                >
                                     Log in
                                 </Link>
                                 <Link
@@ -97,22 +90,20 @@ export default function Navbar() {
                     <Link href="#room" className="text-white hover:text-[#DAA520]">
                         Room
                     </Link>
-                    
+
                     {/* Mobile Auth Menu */}
                     {isAuthenticated ? (
                         <>
+                            <div className="flex items-center space-x-3 px-2 py-2">
+                                <UserAvatar user={user} size="sm" />
+                            </div>
                             <Link href={route('dashboard')} className="text-white hover:text-[#DAA520]">
                                 Dashboard
                             </Link>
                             <Link href={route('profile.edit')} className="text-white hover:text-[#DAA520]">
                                 Settings
                             </Link>
-                            <Link 
-                                href={route('logout')} 
-                                method="post" 
-                                as="button"
-                                className="text-white hover:text-[#DAA520]"
-                            >
+                            <Link href={route('logout')} method="post" as="button" className="text-white hover:text-[#DAA520]">
                                 Log Out
                             </Link>
                         </>

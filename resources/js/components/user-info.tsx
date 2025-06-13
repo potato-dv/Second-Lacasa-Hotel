@@ -1,22 +1,52 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { useInitials } from '@/hooks/use-initials';
+// user-info.tsx
+import { UserAvatar } from '@/components/ui/user-avatar';
 import { type User } from '@/types';
 
-export function UserInfo({ user, showEmail = false }: { user: User; showEmail?: boolean }) {
-    const getInitials = useInitials();
+// Function to truncate email for display
+function truncateEmail(email: string, maxLength: number = 25): string {
+    if (!email || email.length <= maxLength) return email;
+    
+    const [localPart, domain] = email.split('@');
+    if (!domain) return email;
+    
+    if (localPart.length > maxLength - domain.length - 4) {
+        return `${localPart.slice(0, maxLength - domain.length - 4)}...@${domain}`;
+    }
+    return email;
+}
 
+export function UserInfo({ 
+    user, 
+    showEmail = false, 
+    isCollapsed = false 
+}: { 
+    user: User; 
+    showEmail?: boolean;
+    isCollapsed?: boolean;
+}) {
     return (
-        <>
-            <Avatar className="h-8 w-8 overflow-hidden rounded-full">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
-                    {getInitials(user.name)}
-                </AvatarFallback>
-            </Avatar>
-            <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                {showEmail && <span className="text-muted-foreground truncate text-xs">{user.email}</span>}
-            </div>
-        </>
+        <div className={`
+            flex items-center min-w-0
+            ${isCollapsed ? 'justify-center w-auto' : 'gap-3 w-full'}
+            transition-all duration-200 ease-in-out
+        `}>
+            <UserAvatar 
+                user={user} 
+                size={isCollapsed ? "sm" : "md"} 
+                className="flex-shrink-0"
+            />
+            {!isCollapsed && (
+                <div className="flex flex-col min-w-0 flex-1">
+                    <span className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                        {user?.name}
+                    </span>
+                    {showEmail && user?.email && (
+                        <span className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                            {truncateEmail(user.email)}
+                        </span>
+                    )}
+                </div>
+            )}
+        </div>
     );
 }

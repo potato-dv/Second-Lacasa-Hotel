@@ -90,6 +90,12 @@ class GoogleAuthController extends Controller
      */
     private function createSocialAccount(User $user, $googleUser): SocialAccount
     {
+        dd([
+            'google_avatar' => $googleUser->getAvatar(),
+            'user_email' => $googleUser->getEmail(),
+            'user_name' => $googleUser->getName()
+        ]);
+
         return SocialAccount::create([
             'user_id' => $user->id,
             'provider' => 'google',

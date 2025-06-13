@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\RoomController as AdminRoomController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Auth\DashboardController;
 use App\Http\Controllers\Auth\UserBookingController;
+use App\Http\Controllers\AvatarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,8 @@ Route::get('/booking', function () {
 Route::get('/available-rooms', [RoomController::class, 'getAvailableRooms']);
 Route::post('/bookings', [BookingController::class, 'store']);
 Route::get('/bookings/{id}', [BookingController::class, 'show']);
+
+Route::get('/avatar-proxy', [AvatarController::class, 'proxy'])->name('avatar.proxy');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

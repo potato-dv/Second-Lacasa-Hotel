@@ -1,4 +1,4 @@
-// resources/js/components/user-menu-content.tsx
+// UserMenuContent Component
 import { DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import { UserInfo } from '@/components/user-info';
 import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
@@ -14,40 +14,64 @@ export function UserMenuContent({ user }: UserMenuContentProps) {
     const cleanup = useMobileNavigation();
 
     return (
-        <>
+        <div className="w-64 min-w-0"> {/* Set a fixed width for the dropdown */}
             <DropdownMenuLabel className="p-0 font-normal">
-                <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                <div className="px-2 py-2 min-w-0">
                     <UserInfo user={user} showEmail={true} />
                 </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
                 <DropdownMenuItem asChild>
-                    <Link className="block w-full" href={route('home')} as="button" prefetch onClick={cleanup}>
-                        <Home className="mr-2" />
-                        Welcome Page
+                    <Link 
+                        className="flex items-center w-full px-2 py-2 text-sm cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800" 
+                        href={route('home')} 
+                        as="button" 
+                        prefetch 
+                        onClick={cleanup}
+                    >
+                        <Home className="mr-3 h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">Welcome Page</span>
                     </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <Link className="block w-full" href={route('dashboard')} as="button" prefetch onClick={cleanup}>
-                        <LayoutDashboard className="mr-2" />
-                        Dashboard
+                    <Link 
+                        className="flex items-center w-full px-2 py-2 text-sm cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800" 
+                        href={route('dashboard')} 
+                        as="button" 
+                        prefetch 
+                        onClick={cleanup}
+                    >
+                        <LayoutDashboard className="mr-3 h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">Dashboard</span>
                     </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <Link className="block w-full" href={route('profile.edit')} as="button" prefetch onClick={cleanup}>
-                        <Settings className="mr-2" />
-                        Settings
+                    <Link 
+                        className="flex items-center w-full px-2 py-2 text-sm cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800" 
+                        href={route('profile.edit')} 
+                        as="button" 
+                        prefetch 
+                        onClick={cleanup}
+                    >
+                        <Settings className="mr-3 h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">Settings</span>
                     </Link>
                 </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-                <Link className="block w-full" method="post" href={route('logout')} as="button" onClick={cleanup}>
-                    <LogOut className="mr-2" />
-                    Log out
+                <Link 
+                    className="flex items-center w-full px-2 py-2 text-sm cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-red-600 dark:text-red-400" 
+                    method="post" 
+                    href={route('logout')} 
+                    as="button" 
+                    onClick={cleanup}
+                >
+                    <LogOut className="mr-3 h-4 w-4 flex-shrink-0" />
+                    <span className="truncate">Log out</span>
                 </Link>
             </DropdownMenuItem>
-        </>
+        </div>
     );
 }
