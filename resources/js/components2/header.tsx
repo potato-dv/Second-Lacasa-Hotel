@@ -5,7 +5,7 @@ import SearchBar from './searchbar';
 
 export default function MainHeader() {
     return (
-        <header className="relative flex h-screen flex-col bg-[url('/bg-home.jpg')] bg-cover bg-center">
+        <header id="home" className="relative flex h-screen flex-col bg-[url('/bg-home.jpg')] bg-cover bg-center">
             <div className="absolute inset-0 bg-black/50"></div>
 
             {/* Navbar inside the header */}

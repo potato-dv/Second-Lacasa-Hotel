@@ -28,13 +28,34 @@ export default function Navbar() {
 
                     {/* Desktop Menu */}
                     <div className="hidden flex-grow justify-center space-x-5 md:flex">
-                        <Link href="#home" className="text-lg text-white transition duration-300 ease-in-out hover:text-[#DAA520]">
+                        <Link
+                            href="#home"
+                            className="text-lg text-white transition duration-300 ease-in-out hover:text-[#DAA520]"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                        >
                             Home
                         </Link>
-                        <Link href="#about" className="text-lg text-white transition duration-300 ease-in-out hover:text-[#DAA520]">
+                        <Link
+                            href="#about"
+                            className="text-lg text-white transition duration-300 ease-in-out hover:text-[#DAA520]"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                        >
                             About
                         </Link>
-                        <Link href="#room" className="text-lg text-white transition duration-300 ease-in-out hover:text-[#DAA520]">
+                        <Link
+                            href="#room"
+                            className="text-lg text-white transition duration-300 ease-in-out hover:text-[#DAA520]"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById('room')?.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                        >
                             Room
                         </Link>
                     </div>
@@ -81,13 +102,37 @@ export default function Navbar() {
             {/* Mobile Menu */}
             {menuOpen && (
                 <div className="flex flex-col items-center space-y-4 bg-black/90 py-4 md:hidden">
-                    <Link href="#home" className="text-white hover:text-[#DAA520]">
+                    <Link
+                        href="#home"
+                        className="text-white hover:text-[#DAA520]"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+                            setMenuOpen(false);
+                        }}
+                    >
                         Home
                     </Link>
-                    <Link href="#about" className="text-white hover:text-[#DAA520]">
+                    <Link
+                        href="#about"
+                        className="text-white hover:text-[#DAA520]"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                            setMenuOpen(false);
+                        }}
+                    >
                         About
                     </Link>
-                    <Link href="#room" className="text-white hover:text-[#DAA520]">
+                    <Link
+                        href="#room"
+                        className="text-white hover:text-[#DAA520]"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            document.getElementById('room')?.scrollIntoView({ behavior: 'smooth' });
+                            setMenuOpen(false);
+                        }}
+                    >
                         Room
                     </Link>
 
